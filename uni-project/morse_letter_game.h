@@ -38,7 +38,10 @@ class MorseLetterGame {
 
 
 MorseLetterGame::MorseLetterGame(const SensorReader& reader) : m_sensor_reader(reader) {
-
+  Serial.println("Welcome to the Morse code letter encoding game!");
+  Serial.println("This game features you trying to correctly encode the letter you see on screen.");
+  Serial.println("Good luck!");
+  Serial.println(); 
 }
 
 void MorseLetterGame::Exec() {
@@ -55,10 +58,10 @@ void MorseLetterGame::Start() {
   m_input_start = millis();
   m_input_active = false;
 
-  m_ch_to_encode = char(rand() % 25 + 97);  // TODO: Remove magic numbers
+  m_ch_to_encode = random('a', 'z');
   m_player_dot_dash_input[10] = { 0 };
 
-  Serial.print("Letter inside Start(): ");
+  Serial.print("Letter to encode: ");
   Serial.println(m_ch_to_encode);
 }
 
