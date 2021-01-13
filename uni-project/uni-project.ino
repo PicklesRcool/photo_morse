@@ -7,13 +7,16 @@
 #include "config.h"
 #include "sensor_reader.h"
 #include "morse_symbols.h"
-
+#include "led_utils.h"
 
 SensorReader sensor_reader(kLedPin);
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(kLedPin, OUTPUT);
+  pinMode(kRedLedPin_1, OUTPUT);
+  pinMode(kRedLedPin_2, OUTPUT);
+
   pinMode(kSensorPin, INPUT);
   analogReference(0);
   
@@ -26,7 +29,6 @@ void setup() {
 
 void loop() {
 #if 1  // For stopping program execution
-
   unsigned long input_start = millis();
   bool input_active = false;
 
@@ -56,9 +58,11 @@ void loop() {
   
   if (strcmp(dot_dash_str, CharToMorse(rand_char)) == 0) {
     Serial.println("Nice! :D\n");
+    LED_DoubleBlink_Parallel(kRedLedPin_1, kRedLedPin_2, 200, 1000);
   }
   else {
     Serial.println("Try again! :(\n");
+    LED_DoubleBlink_Split(kRedLedPin_1, kRedLedPin_2, 200, 1000);
   }
 
 #endif

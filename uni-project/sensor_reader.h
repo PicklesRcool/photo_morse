@@ -9,6 +9,7 @@
 #define SENSOR_READER_H_
 
 #include "config.h"
+#include "led_utils.h"
 
 
 class SensorReader {
@@ -74,10 +75,10 @@ void SensorReader::Read(const int sensor_value) {
 
 void SensorReader::SetLED() {
   if (m_key_pressed) {
-    digitalWrite(m_led_pin, HIGH);
+    LED_TurnOn(m_led_pin);
   }
   else {
-    digitalWrite(m_led_pin, LOW);
+    LED_TurnOff(m_led_pin);
   }
 }
 

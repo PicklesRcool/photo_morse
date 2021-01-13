@@ -11,10 +11,12 @@
 #include "morse_symbols.h"
 
 
-const int kLedPin    = 3;
-const int kSensorPin = 0;
+const int kLedPin       = 3;
+const int kRedLedPin_1  = 5;
+const int kRedLedPin_2  = 7;
+const int kSensorPin    = 0;
 
-const int kLightSensorThreshold = 10;   // percent. Higher = more sensitive.
+const int kLightSensorThreshold = 60;   // percent. Higher = more sensitive.
 const int kWaitForPressInterval = 50;   // milliseconds
 const int kDotDashBorder        = 225;  // milliseconds of press
 const int kSerialDataRate       = 9600; // baud

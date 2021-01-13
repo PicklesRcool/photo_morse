@@ -9,6 +9,7 @@
 #ifndef MORSE_SYMBOLS_H_
 #define MORSE_SYMBOLS_H_
 
+const char* CharToMorse(const char c);
 
 const char* CharToMorse(const char c) {
   switch(c) {
