@@ -5,12 +5,12 @@
 
 #include "config.h"
 #include "sensor_reader.h"
+#include "morse_sensor_reader.h"
 #include "morse_symbols.h"
 #include "led_utils.h"
 #include "morse_letter_game.h"
 
 SensorReader sensor_reader(kLedPin);
-char game_choise = 0;
 Game* current_game = nullptr;
 
 void setup() {
@@ -35,25 +35,30 @@ void setup() {
   Serial.println("There are two games available at the moment");
   Serial.println("1. Morse code letter encoding game;");
   Serial.println("2. Morse code decoder game;");
-  Serial.println("0. Exit.");
+  Serial.println("10. Exit.");
   Serial.print  ("Make your choise: ");
 
-  while(Serial.available() == 0){}  // Wait for user input
-  game_choise = Serial.read();
+  MorseSensorReader morse_reader(kLedPin);
+  int choise = -1;
+  char ch = 0;
+  while (ch != '-') {
+    ch = morse_reader.WaitAndGetSymbol(0);
+    ++choise;
+  }
 
-  Serial.println(char(game_choise));
+  Serial.println(choise);
   Serial.println();
 
-  switch (game_choise) {
-    case '1': {
+  switch (choise) {
+    case 1: {
       current_game = new MorseLetterGame(sensor_reader);
       break;
     }
-    case '2': {
+    case 2: {
       //TODO: Create another game
       break;
     }
-    case '0': {
+    case 10: {
       break;
     }
     default: {
