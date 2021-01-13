@@ -20,11 +20,6 @@ void setup() {
   Serial.println(kSerialDataRate);
 }
 
-unsigned long click_start  = 0;
-unsigned long last_pressed = 0;
-
-bool clicking = false;
-
 void loop() {
 #if 1  // For stopping program execution
 
