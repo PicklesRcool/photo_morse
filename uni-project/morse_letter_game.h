@@ -8,16 +8,17 @@
 #ifndef MORSE_LETTER_GAME_H_
 #define MORSE_LETTER_GAME_H_
 
+#include "game.h"
 #include "config.h"
 #include "sensor_reader.h"
 #include "led_utils.h"
 
 
-class MorseLetterGame {
+class MorseLetterGame : public Game {
  public:
   MorseLetterGame(const SensorReader& reader);
 
-  void Exec();
+  void Exec() override;
 
  private:
   void Start();
