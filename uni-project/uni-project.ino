@@ -27,22 +27,39 @@ void setup() {
 void loop() {
 #if 1  // For stopping program execution
 
-  char rand_char = char(rand() % 25 + 97);
+  unsigned long input_start = millis();
+  bool input_active = false;
 
-  Serial.print("Write the character: ");
+  char rand_char = char(rand() % 25 + 97);  // TODO: Remove magic numbers
+  char dot_dash_str[10] = { 0 };
+
+  Serial.print("Write the letter: ");
   Serial.println(rand_char);
 
-  while(1) {
+  while(!(millis() - input_start > kNewWordThreshhold && input_active)) {
     int sensor_read = analogRead(kSensorPin);
     sensor_reader.ProcessValue(sensor_read);
 
     if (sensor_reader.GetReadOver()) {
-      Serial.print(sensor_reader.GetReadSymbol());
-      Serial.print(" - ");
-      Serial.println(sensor_reader.GetDuration());
+      char read_symbol = sensor_reader.GetReadSymbol();
+
+      Serial.print(read_symbol);
+      strncat(dot_dash_str, &read_symbol, 1); 
+
+      input_active = true;
+      input_start = millis();
     }
 
     delay(kLoopDelay);
   }
+  Serial.println();
+  
+  if (strcmp(dot_dash_str, CharToMorse(rand_char)) == 0) {
+    Serial.println("Nice! :D\n");
+  }
+  else {
+    Serial.println("Try again! :(\n");
+  }
+
 #endif
 }

@@ -19,6 +19,7 @@ const int kWaitForPressInterval = 50;   // milliseconds
 const int kDotDashBorder        = 225;  // milliseconds of press
 const int kSerialDataRate       = 9600; // baud
 const int kLoopDelay            = 40;   // milliseconds
+const int kNewWordThreshhold    = 2000; // milliseconds
 
 
 #endif  // CONFIG_H_
