@@ -8,6 +8,8 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
+#include "morse_symbols.h"
+
 
 const int kLedPin    = 3;
 const int kSensorPin = 0;
