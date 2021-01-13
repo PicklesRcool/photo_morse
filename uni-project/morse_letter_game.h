@@ -60,7 +60,10 @@ void MorseLetterGame::Start() {
   m_input_active = false;
 
   m_ch_to_encode = random('a', 'z');
-  m_player_dot_dash_input[10] = { 0 };
+
+  for (int i = 0; i <= 10; ++i) {
+    m_player_dot_dash_input[i] = 0;
+  }
 
   Serial.print("Letter to encode: ");
   Serial.println(m_ch_to_encode);

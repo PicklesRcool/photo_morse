@@ -75,7 +75,7 @@ void SensorReader::Read(const int sensor_value) {
 
 void SensorReader::SetLED() {
   if (m_key_pressed) {
-    LED_TurnOn(m_led_pin);
+    LED_Flash(m_led_pin, 50);
   }
   else {
     LED_TurnOff(m_led_pin);
