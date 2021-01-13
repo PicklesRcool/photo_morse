@@ -1,7 +1,7 @@
 /**
  *
- *	File: config.h
- *	Desc: File containing configurable values of important variables for the app
+ *  File: config.h
+ *  Desc: File containing configurable values of important variables for the app
  *
  */
 
@@ -12,11 +12,11 @@
 const int kLedPin    = 3;
 const int kSensorPin = 0;
 
-const int kLightSensorThreshold = 18;	// percent
-const int kWaitForPressInterval = 50;	// milliseconds
-const int kDotDashBorder		= 250;	// milliseconds of press
-const int kSerialDataRate		= 9600; // baud
-const int kLoopDelay			= 40;	// milliseconds
+const int kLightSensorThreshold = 10;   // percent. Higher = more sensitive.
+const int kWaitForPressInterval = 50;   // milliseconds
+const int kDotDashBorder        = 225;  // milliseconds of press
+const int kSerialDataRate       = 9600; // baud
+const int kLoopDelay            = 40;   // milliseconds
 
 
 #endif  // CONFIG_H_

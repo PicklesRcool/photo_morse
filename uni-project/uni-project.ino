@@ -1,9 +1,13 @@
-#include "config.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
+#include "config.h"
+#include "sensor_reader.h"
+
+
+SensorReader sensor_reader(kLedPin);
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
@@ -23,33 +27,14 @@ bool clicking = false;
 
 void loop() {
 #if 1  // For stopping program execution
+
   int sensor_read = analogRead(kSensorPin);
-  int light_perc  = round(sensor_read / 1023.0 * 100);
-  bool key_pressed = light_perc <= kLightSensorThreshold;
-  
-  if (key_pressed) {
-    digitalWrite(kLedPin, HIGH);
+  sensor_reader.ProcessValue(sensor_read);
 
-    last_pressed = millis();
-
-    if (!clicking) {
-      clicking = true;
-      click_start = millis();
-    }
-  }
-
-  if (!key_pressed) {
-    digitalWrite(kLedPin, LOW);
-  }
-
-  if (((millis() - last_pressed) > kWaitForPressInterval) && clicking) {
-    clicking = false;
-
-    int click_dur = millis() - click_start;
-    if (click_dur < kDotDashBorder)
-      Serial.print(".");
-    else
-      Serial.print("-");
+  if (sensor_reader.GetReadOver()) {
+    Serial.print(sensor_reader.GetReadSymbol());
+    Serial.print(" - ");
+    Serial.println(sensor_reader.GetDuration());
   }
 
   delay(kLoopDelay);
