@@ -10,6 +10,7 @@
 #define MORSE_SYMBOLS_H_
 
 const char* CharToMorse(const char c);
+char MorseToChar(const char* str);
 
 const char* CharToMorse(const char c) {
   switch(c) {
@@ -53,7 +54,7 @@ const char* CharToMorse(const char c) {
       return "--";
     }
     case 'n': {
-      return ".-";
+      return "-.";
     }
     case 'o': {
       return "---";
@@ -94,5 +95,87 @@ const char* CharToMorse(const char c) {
   }
 }
 
+char MorseToChar(const char* str) {
+  if (strcmp(str, ".-") == 0) {
+    return 'a';
+  }
+  if (strcmp(str, "-...") == 0) {
+    return 'b';
+  }
+  if (strcmp(str, "-.-.") == 0) {
+    return 'c';
+  }
+  if (strcmp(str, "-..") == 0) {
+    return 'd';
+  }
+  if (strcmp(str, ".") == 0) {
+    return 'e';
+  }
+  if (strcmp(str, "..-.") == 0) {
+    return 'f';
+  }
+  if (strcmp(str, "--.") == 0) {
+    return 'g';
+  }
+  if (strcmp(str, "....") == 0) {
+    return 'h';
+  }
+  if (strcmp(str, "..") == 0) {
+    return 'i';
+  }
+  if (strcmp(str, ".---") == 0) {
+    return 'j';
+  }
+  if (strcmp(str, "-.-") == 0) {
+    return 'k';
+  }
+  if (strcmp(str, ".-..") == 0) {
+    return 'l';
+  }
+  if (strcmp(str, "--") == 0) {
+    return 'm';
+  }
+  if (strcmp(str, "-.") == 0) {
+    return 'n';
+  }
+  if (strcmp(str, "---") == 0) {
+    return 'o';
+  }
+  if (strcmp(str, ".--.") == 0) {
+    return 'p';
+  }
+  if (strcmp(str, "--.-") == 0) {
+    return 'q';
+  }
+  if (strcmp(str, ".-.") == 0) {
+    return 'r';
+  }
+  if (strcmp(str, "...") == 0) {
+    return 's';
+  }
+  if (strcmp(str, "-") == 0) {
+    return 't';
+  }
+  if (strcmp(str, "..-") == 0) {
+    return 'u';
+  }
+  if (strcmp(str, "...-") == 0) {
+    return 'v';
+  }
+  if (strcmp(str, ".--") == 0) {
+    return 'w';
+  }
+  if (strcmp(str, "-..-") == 0) {
+    return 'x';
+  }
+  if (strcmp(str, "-.--") == 0) {
+    return 'y';
+  }
+  if (strcmp(str, "--..") == 0) {
+    return 'z';
+  }
+  
+  return 0;
+}
 
 #endif  // MORSE_SYMBOLS_H_

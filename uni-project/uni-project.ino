@@ -9,8 +9,11 @@
 #include "morse_symbols.h"
 #include "led_utils.h"
 #include "morse_letter_game.h"
+#include "morse_decoder_game.h"
+
 
 SensorReader sensor_reader(kLedPin);
+MorseSensorReader morse_reader(kLedPin);
 Game* current_game = nullptr;
 
 void setup() {
@@ -38,7 +41,6 @@ void setup() {
   Serial.println("10. Exit.");
   Serial.print  ("Make your choise: ");
 
-  MorseSensorReader morse_reader(kLedPin);
   int choise = -1;
   char ch = 0;
   while (ch != '-') {
@@ -55,7 +57,7 @@ void setup() {
       break;
     }
     case 2: {
-      //TODO: Create another game
+      current_game = new MorseDecoderGame(morse_reader);
       break;
     }
     case 10: {

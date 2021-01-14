@@ -23,5 +23,7 @@ const int kSerialDataRate       = 9600; // baud
 const int kLoopDelay            = 40;   // milliseconds
 const int kNewWordThreshhold    = 2000; // milliseconds
 
+const int kEndOfSentenceTimer   = 4000; // milliseconds
+
 
 #endif  // CONFIG_H_
