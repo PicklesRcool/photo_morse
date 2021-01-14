@@ -14,40 +14,40 @@
 
 class SensorReader {
  public:
-  SensorReader(const int led_pin);
+  SensorReader(const uint8_t led_pin);
 
-  void ProcessValue(const int sensor_value);
+  void ProcessValue(const uint16_t sensor_value);
 
   bool GetReadOver() const;
   char GetReadSymbol() const;
-  unsigned long GetDuration() const;
+  uint32_t GetDuration() const;
 
  private:
-  void Read(const int sensor_value);
+  void Read(const uint16_t sensor_value);
   void SetLED();
   void FinishRead();
   bool IsGetReadOver() const;
 
 
-  int m_led_pin = -1;
+  uint8_t m_led_pin = -1;
 
   bool m_key_pressed  = false;
   bool m_clicking     = false;
   bool m_read_over    = false;
 
-  unsigned long m_click_start   = 0;
-  unsigned long m_last_pressed  = 0;
+  uint32_t m_click_start   = 0;
+  uint32_t m_last_pressed  = 0;
 
-  unsigned long m_click_dur = 0;
+  uint32_t m_click_dur = 0;
   char m_last_read_symbol   = 0;
 };
 
 
-SensorReader::SensorReader(const int led_pin) : m_led_pin(led_pin) {
+SensorReader::SensorReader(const uint8_t led_pin) : m_led_pin(led_pin) {
 
 }
 
-void SensorReader::ProcessValue(const int sensor_value) {
+void SensorReader::ProcessValue(const uint16_t sensor_value) {
   Read(sensor_value);
   SetLED();
 
@@ -56,8 +56,8 @@ void SensorReader::ProcessValue(const int sensor_value) {
   }
 }
 
-void SensorReader::Read(const int sensor_value) {
-  int light_perc = round(sensor_value / 1023.0 * 100);
+void SensorReader::Read(const uint16_t sensor_value) {
+  uint8_t light_perc = round(sensor_value / 1023.0 * 100);
 
   m_key_pressed = light_perc <= kLightSensorThreshold;
 
@@ -102,7 +102,7 @@ char SensorReader::GetReadSymbol() const {
   return m_last_read_symbol;
 };
 
-unsigned long SensorReader::GetDuration() const {
+uint32_t SensorReader::GetDuration() const {
   return m_click_dur;
 }
 

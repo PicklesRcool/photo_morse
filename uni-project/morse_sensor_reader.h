@@ -14,20 +14,20 @@
 
 class MorseSensorReader : public SensorReader {
  public:
-  MorseSensorReader(const int led_pin);
-  char WaitAndGetSymbol(const unsigned long wait_time);
+  MorseSensorReader(const uint8_t led_pin);
+  char WaitAndGetSymbol(const uint32_t wait_time);
 };
 
 
-MorseSensorReader::MorseSensorReader(const int led_pin) : SensorReader(led_pin) {
+MorseSensorReader::MorseSensorReader(const uint8_t led_pin) : SensorReader(led_pin) {
 
 }
 
-char MorseSensorReader::WaitAndGetSymbol(const unsigned long wait_time) {
-  unsigned long time_start = millis();
+char MorseSensorReader::WaitAndGetSymbol(const uint32_t wait_time) {
+  uint32_t time_start = millis();
 
   while(1) {
-    int sensor_read = analogRead(kSensorPin);
+    uint16_t sensor_read = analogRead(kSensorPin);
     ProcessValue(sensor_read);
 
     if (GetReadOver()) {

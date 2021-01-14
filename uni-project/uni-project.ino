@@ -41,7 +41,7 @@ void setup() {
   Serial.println("10. Exit.");
   Serial.print  ("Make your choise: ");
 
-  int choise = -1;
+  uint8_t choise = -1;
   char ch = 0;
   while (ch != '-') {
     ch = morse_reader.WaitAndGetSymbol(0);

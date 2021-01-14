@@ -30,7 +30,7 @@ class MorseDecoderGame : public Game {
 
   MorseSensorReader m_morse_reader;
 
-  unsigned long m_last_input_time = 0;
+  uint32_t m_last_input_time = 0;
   char m_decoded_str[100] = { 0 };
 
   bool m_sentence_input_started = false;

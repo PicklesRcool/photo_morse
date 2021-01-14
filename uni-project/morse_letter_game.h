@@ -28,7 +28,7 @@ class MorseLetterGame : public Game {
 
   SensorReader m_sensor_reader;
 
-  unsigned long m_input_start = 0;
+  uint32_t m_input_start = 0;
   bool m_input_active = false;
 
   char m_ch_to_encode = 0;
@@ -61,7 +61,7 @@ void MorseLetterGame::Start() {
 
   m_ch_to_encode = random('a', 'z');
 
-  for (int i = 0; i <= 10; ++i) {
+  for (uint8_t i = 0; i <= 10; ++i) {
     m_player_dot_dash_input[i] = 0;
   }
 
@@ -70,7 +70,7 @@ void MorseLetterGame::Start() {
 }
 
 void MorseLetterGame::ReadLoop() {
-  int sensor_read = analogRead(kSensorPin);
+  uint16_t sensor_read = analogRead(kSensorPin);
   m_sensor_reader.ProcessValue(sensor_read);
 
   if (m_sensor_reader.GetReadOver()) {
