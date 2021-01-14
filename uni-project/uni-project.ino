@@ -3,13 +3,10 @@
 #include <string.h>
 #include <math.h>
 
-#include "config.h"
-#include "sensor_reader.h"
-#include "morse_sensor_reader.h"
-#include "morse_symbols.h"
-#include "led_utils.h"
+#include "morse_led_utils.h"
 #include "morse_letter_game.h"
 #include "morse_decoder_game.h"
+#include "sentence_encoder_game.h"
 
 
 SensorReader sensor_reader(kLedPin);
@@ -38,6 +35,7 @@ void setup() {
   Serial.println("There are two games available at the moment");
   Serial.println("1. Morse code letter encoding game;");
   Serial.println("2. Morse code decoder game;");
+  Serial.println("3. Sentence encoder game;");
   Serial.println("10. Exit.");
   Serial.print  ("Make your choise: ");
 
@@ -58,6 +56,10 @@ void setup() {
     }
     case 2: {
       current_game = new MorseDecoderGame(morse_reader);
+      break;
+    }
+    case 3: {
+      current_game = new SentenceEncoderGame(kLedPin);
       break;
     }
     case 10: {
